@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +39,25 @@ class MainActivity : AppCompatActivity() {
            intent.putExtra("USER",enteredName)
            startActivity(intent)
           }
+
+
+        val button = findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            val popupMenu: PopupMenu = PopupMenu(this,button)
+            popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.action_crick ->
+                        Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                    R.id.action_ftbal ->
+                        Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                    R.id.action_hockey ->
+                        Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                }
+                true
+            })
+            popupMenu.show()
+        }
 
 
     }
